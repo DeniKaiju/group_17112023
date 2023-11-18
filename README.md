@@ -1,1 +1,2 @@
-# group_17112023
+# Denis Vasylenko
+# 17.11.2023
