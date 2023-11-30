@@ -26,6 +26,11 @@ new_student = {
         'Середній бал': 87
     }
 students['John Wick'] = new_student
+
+average_grade = sum(student['Середній бал'] for student in students.values())/4
+
 students['Іван Петров']['bank_account_number'] = None
 
 student2_salary = students['Женя Курич'].get('Salary') or 0.0
+
+print(average_grade)
