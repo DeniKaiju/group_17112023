@@ -1,39 +1,31 @@
 # from pprint import pprint
 
 import requests
-url = 'https://script.google.com/macros/s/AKfycbyc7HcC4tzepOtMlZOIxQQazrcp94GylCFRdv47Xnch6l87H2t67o8XbLH8OQUT0IR6/exec'
+
+url = 'https://script.google.com/macros/s/AKfycbzjh0-mOMTcbN-tsA43wH62_yR-8ayNbpD-XBsI4LMMooksQIECKRONd3-2vQLx4eCI/exec'
 
 response = requests.get(url=url)
 data_from_net = response.json()
 
 # pprint(data_from_net)
-
-for client in data_from_net['clients']:
-    if client['age'] > 35:
-        pass
-        if client['large_family'] == 'Так':
-            print(f"{client['name']}: {client['monthly_income']}")
-
 large_families_count = 0
-
-for client in data_from_net['clients']:
-    if client['large_family'] == 'Так':
-        large_families_count += 1
-
-print(f"Кількість багатодітних сімей: {large_families_count}")
-
 credit_more_than_income = 0
-
-for client in data_from_net['clients']:
-    if client['Loan_expense_per_month'] > client['monthly_income']:
-        credit_more_than_income += 1
-
-print(f"Кількість сімей, в яких витрати за кредитами більші за доходи: {credit_more_than_income}")
-
 women_with_house = 0
 
 for client in data_from_net['clients']:
-    if client['gender'] == 'Ж' and client['Owning_own_home'] == 'Так':
-        women_with_house += 1
+    if client['age'] > 35 and client['large_family'] is True:
+        print(f"{client['name']}: {client['monthly_income']}")
 
-print(f"Кількість жінок забезпечених власним житлом: {women_with_house}")
+    if client['large_family'] is True:
+        large_families_count += 1
+        large_families_amount = f"Кількість багатодітних сімей: {large_families_count}"
+    if client['Loan_expense_per_month'] > client['monthly_income']:
+        credit_more_than_income += 1
+        loan_more_income = f"Кількість сімей, в яких витрати за кредитами більші за доходи: {credit_more_than_income}"
+    if client['gender'] == 'Ж' and client['Owning_own_home'] is True:
+        women_with_house += 1
+        result_women_with_houses = f"Кількість жінок забезпечених власним житлом: {women_with_house}"
+
+print(large_families_amount)
+print(loan_more_income)
+print(result_women_with_houses)
