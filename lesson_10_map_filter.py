@@ -6,6 +6,6 @@ print(string_list)
 
 mixed_data_list_2 = [42, "Hello", 3.14, {"key": "value"}, None, "World", 7, 8, 9, "Another String"]
 
-filtered_list = list(filter(lambda s: isinstance(s, int), mixed_data_list_2))
+filtered_list = list(filter(lambda s: type(s) == int, mixed_data_list_2))
 
 print(filtered_list)
