@@ -1,40 +1,4 @@
-import pytest
-from lesson_13_bank_accounts import Client, CreditAccount, CurrentAccount
-
-
-@pytest.fixture(scope='class')
-def current_account() -> CurrentAccount:
-    instance = CurrentAccount()
-    return instance
-
-
-@pytest.fixture(scope='class')
-def current_account_2() -> CurrentAccount:
-    instance = CurrentAccount()
-    return instance
-
-
-@pytest.fixture(scope='class')
-def credit_account() -> CreditAccount:
-    instance = CreditAccount(limit=-2000)
-    return instance
-
-
-@pytest.fixture(scope='class')
-def credit_account_2() -> CreditAccount:
-    instance = CreditAccount(limit=-2000)
-    return instance
-
-@pytest.fixture(scope='class')
-def client() -> Client:
-    instance = Client(name='Alex')
-    return instance
-
-
-@pytest.fixture(scope='class')
-def another_client() -> Client:
-    instance = Client(name='Bob')
-    return instance
+from lesson_13_bank_accounts import CreditAccount, CurrentAccount
 
 
 class TestDepositFunds:
@@ -74,7 +38,7 @@ class TestDepositFunds:
         current_account.make_transaction(credit_account, 50000000000)
         assert current_account.balance == balance_before
 
-    def test_add_4_accounts_to_another_client(self, another_client, current_account, credit_account, current_account_2):
+    def test_add_4_accounts_to_another_client(self, another_client, current_account, credit_account, current_account_2, credit_account_2):
         another_client.accounts.append(current_account)
         another_client.accounts.append(current_account_2)
 
