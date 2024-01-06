@@ -54,3 +54,4 @@ class CreditAccount(BaseAccount):
             return
         self.balance -= summa + summa * self.percent_commission
         other.balance += summa
+
